@@ -15,7 +15,8 @@ object sendingmessage extends App {
     val messageDF = dfFromText.select($"amount", $"id", $"isFlaggedFraud", $"isFraud", $"nameDest",
       $"nameOrig", $"newbalanceDest", $"newbalanceOrig", $"oldbalanceDest", $"oldbalanceOrg", $"step", $"type")
 
-    val kafkaServer: String = "ip-172-31-13-101.eu-west-2.compute.internal:9092"
+
+    val kafkaServer: String = "ip-172-31-3-80.eu-west-2.compute.internal:9092"
     val topicSampleName: String = "TeferiTopic"
 
     messageDF.selectExpr("CAST(id AS STRING) AS key", "to_json(struct(*)) AS value").selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("kafka.bootstrap.servers", kafkaServer).option("topic", topicSampleName).save()
