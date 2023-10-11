@@ -39,7 +39,7 @@ object readingmessage extends App {
 
 
   // Write the DataFrame as CSV files to HDFS
-  df.writeStream.format("csv").option("checkpointLocation", "/tmp/jenkins/kafkab").option("path", "/tmp/jenkins/kafkab/FraudApib").start().awaitTermination()
+  df.writeStream.format("csv").option("checkpointLocation", "/tmp/jenkins/Teferi").option("path", "/tmp/jenkins/Teferi/FraudApib").start().awaitTermination()
 
 
 }
